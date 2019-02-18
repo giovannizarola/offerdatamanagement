@@ -1,0 +1,125 @@
+swagger: '2.0'
+info:
+  description: offer API documentation
+  version: 0.0.1
+  title: OfferDataManagement
+basePath: /v1
+schemes:
+  - http
+produces:
+  - application/json
+paths:
+  /offers:
+    get:
+      tags:
+        - offer-api
+      summary: get All Aactive Offers
+      operationId: getAllOffers
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/OfferDTO'
+        '404':
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - offer-api
+      summary: create new Offer
+      operationId: createOffer
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: offerDTO
+          description: offerDTO
+          required: true
+          schema:
+            $ref: '#/definitions/OfferDTO'
+      responses:
+        '201':
+          description: OK
+          schema:
+            $ref: '#/definitions/OfferDTO'
+        '409':
+          description: Conflict
+      deprecated: false
+  /offers/{offerCode}:
+    get:
+      tags:
+        - offer-api
+      summary: get Offer by code
+      operationId: getOffer
+      produces:
+        - application/json
+      parameters:
+        - name: offerCode
+          in: path
+          description: offerCode
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/OfferDTO'
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - offer-api
+      summary: delete Offer by code
+      operationId: deleteOffer
+      produces:
+        - '*/*'
+      parameters:
+        - name: offerCode
+          in: path
+          description: offerCode
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+      deprecated: false
+definitions:
+  OfferDTO:
+    type: object
+    required:
+      - description
+      - end_date
+      - offer_code
+      - offer_price
+      - product_code
+      - start_date
+    properties:
+      description:
+        type: string
+      end_date:
+        type: string
+        format: date
+      offer_code:
+        type: string
+      offer_price:
+        type: number
+      product_code:
+        type: string
+      start_date:
+        type: string
+        format: date
+      status:
+        type: string
+        enum:
+          - ACTIVE
+          - EXPIRED
+    title: OfferDTO
