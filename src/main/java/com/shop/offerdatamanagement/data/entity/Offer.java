@@ -59,7 +59,6 @@ public class Offer implements Serializable {
     @Column(name = "status")
     private OfferStatus status;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }

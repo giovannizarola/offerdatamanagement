@@ -11,9 +11,10 @@ This is a "microservice" application that provide REST API for Create, Read, Lis
  - Spring Data JPA
  - Hibernate
  - H2 in memory database
+ - mapstruct
  - Maven
  - MockMvc 
- - Sprin Scheduling
+ - Spring Scheduling
  
 # API-First development using openapi-generator
 
@@ -41,9 +42,7 @@ Below all the commands to clone, build and run the project with Maven and Java 8
 	
 	- H2 console available at http://localhost:8080/h2-console
 	
-# Running
-
-## POST Offer
+# Running a POST Offer
 
 	- URL is http://localhost:8080/v1/offers   
 	
@@ -59,5 +58,16 @@ JSON examples to POST a movie
   "status": "ACTIVE"
 }
 ```
+
+To create a new Offer respect the following rule:
+1) start_date must be today
+2) end_date must be bigger then start_date
+3) offer_code must be unique
+4) is not possible to have more then one offer active for the same product
+5) a job runs every day at 3:00AM and updates the status of the offers to EXPIRE which have end_date equals to yesterday
+
+
+For the other operations open the swagger-ui
+
  
 	
