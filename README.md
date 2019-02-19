@@ -21,7 +21,7 @@ This is a "microservice" application that provide REST API for Create, Read, Lis
 [OpenAPI-Generator]() is configured for this application. You can generate API code from the `src/main/resources/openapi/OfferDataManagement.yaml` definition file by running:
 
 ```bash
-./mvnw generate-sources
+mvn generate-sources
 ```
 
 
